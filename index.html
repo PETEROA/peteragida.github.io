@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Your Name - ML Researcher</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-menu a:hover {
+            color: #34495e;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: #2c3e50;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+            background: white;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            color: #5d6d7e;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Sections */
+        .section {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .section:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            color: #2c3e50;
+            font-weight: 600;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 0.5rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 300px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-text {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Education Section */
+        .education-item {
+            margin-bottom: 2.5rem;
+            border-left: 3px solid #bdc3c7;
+            padding-left: 2rem;
+        }
+
+        .education-item h3 {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .education-item .institution {
+            font-size: 1.1rem;
+            color: #34495e;
+            margin-bottom: 0.3rem;
+            font-style: italic;
+        }
+
+        .education-item .year {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+
+        .education-item p {
+            color: #5d6d7e;
+            font-size: 0.95rem;
+        }
+
+        /* Research Section */
+        .research-areas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .research-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #e1e8ed;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .research-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .research-card p {
+            color: #5d6d7e;
+            font-size: 0.95rem;
+        }
+
+        .research-direction {
+            background: #ecf0f1;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .research-direction h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        /* Publications Section */
+        .publication-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e1e8ed;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .publication-title {
+            font-size: 1.1rem;
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .publication-authors {
+            color: #34495e;
+            margin-bottom: 0.3rem;
+            font-style: italic;
+        }
+
+        .publication-venue {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-links {
+            margin-top: 0.5rem;
+        }
+
+        .publication-links a {
+            display: inline-block;
+            padding: 4px 12px;
+            background: #ecf0f1;
+            color: #2c3e50;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-right: 8px;
+            font-size: 0.85rem;
+            transition: background 0.3s ease;
+        }
+
+        .publication-links a:hover {
+            background: #d5dbdb;
+        }
+
+        /* Experience Section */
+        .experience-item {
+            margin-bottom: 2.5rem;
+            border-left: 3px solid #bdc3c7;
+            padding-left: 2rem;
+        }
+
+        .experience-item h3 {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+
+        .experience-item .position {
+            font-size: 1rem;
+            color: #34495e;
+            margin-bottom: 0.3rem;
+            font-style: italic;
+        }
+
+        .experience-item .duration {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+
+        .experience-item ul {
+            margin-left: 1.5rem;
+            color: #5d6d7e;
+        }
+
+        .experience-item li {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: #ecf0f1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2c3e50;
+            font-size: 1rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #e1e8ed;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d5dbdb;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            background: #2c3e50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: background 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #34495e;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .social-links {
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: #34495e;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin: 0 8px;
+            line-height: 35px;
+            transition: background 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .social-links a:hover {
+            background: #5d6d7e;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: white;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 2rem 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .research-areas {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 40px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo">Dr. Your Name</div>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Dr. Your Name</h1>
+            <p class="subtitle">Machine Learning Researcher</p>
+            <p>Advancing the frontiers of artificial intelligence through rigorous research in deep learning, computer vision, and neural network architectures. Passionate about developing algorithms that push the boundaries of what's possible in machine intelligence.</p>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <div class="container">
+            <h2>About</h2>
+            <div class="about-content">
+                <div>
+                    <img src="https://via.placeholder.com/250x300/f8f9fa/2c3e50?text=Your+Photo" alt="Profile Picture" class="profile-image">
+                </div>
+                <div class="about-text">
+                    <p>I am a machine learning researcher with a deep passion for understanding and advancing artificial intelligence. My work focuses on developing novel algorithms and architectures that can learn more efficiently and generalize better across different domains.</p>
+                    
+                    <p>Throughout my academic journey, I have been fascinated by the intersection of theoretical computer science and practical applications of AI. My research aims to bridge the gap between cutting-edge theory and real-world impact, with particular emphasis on making AI systems more robust, interpretable, and accessible.</p>
+                    
+                    <p>I believe that the future of AI lies not just in scaling existing methods, but in fundamentally rethinking how machines can learn, reason, and adapt. This philosophy drives my current research directions and collaborative efforts with leading institutions worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="education">
+        <div class="container">
+            <h2>Education</h2>
+            <div class="education-item">
+                <h3>Ph.D. in Computer Science</h3>
+                <div class="institution">Stanford University</div>
+                <div class="year">2020 - 2024</div>
+                <p>Dissertation: "Novel Architectures for Few-Shot Learning in Deep Neural Networks"<br>
+                Advisor: Prof. Name | GPA: 4.0/4.0</p>
+            </div>
+            <div class="education-item">
+                <h3>M.S. in Machine Learning</h3>
+                <div class="institution">Carnegie Mellon University</div>
+                <div class="year">2018 - 2020</div>
+                <p>Specialized in deep learning and computer vision with focus on transfer learning and domain adaptation.<br>
+                Thesis: "Improving Transfer Learning Through Meta-Learning Approaches"</p>
+            </div>
+            <div class="education-item">
+                <h3>B.S. in Computer Science & Mathematics</h3>
+                <div class="institution">MIT</div>
+                <div class="year">2014 - 2018</div>
+                <p>Summa Cum Laude, Phi Beta Kappa<br>
+                Relevant Coursework: Machine Learning, Linear Algebra, Probability Theory, Algorithms</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="research">
+        <div class="container">
+            <h2>Research Areas</h2>
+            <div class="research-areas">
+                <div class="research-card">
+                    <h3>Meta-Learning</h3>
+                    <p>Developing algorithms that can quickly adapt to new tasks with minimal data, focusing on gradient-based meta-learning and few-shot classification problems.</p>
+                </div>
+                <div class="research-card">
+                    <h3>Neural Architecture Search</h3>
+                    <p>Automated design of neural network architectures using reinforcement learning and evolutionary approaches to discover optimal models for specific tasks.</p>
+                </div>
+                <div class="research-card">
+                    <h3>Interpretable AI</h3>
+                    <p>Creating machine learning models that are both powerful and interpretable, with emphasis on understanding decision-making processes in deep networks.</p>
+                </div>
+                <div class="research-card">
+                    <h3>Transfer Learning</h3>
+                    <p>Investigating how knowledge gained from one domain can be effectively transferred to related domains, particularly in computer vision applications.</p>
+                </div>
+            </div>
+            
+            <div class="research-direction">
+                <h3>Current Research Direction</h3>
+                <p>My current research focuses on developing <strong>efficient meta-learning algorithms</strong> that can rapidly adapt to new domains while maintaining strong generalization capabilities. I'm particularly interested in the intersection of meta-learning and neural architecture search, exploring how we can automatically design architectures that are optimized for few-shot learning scenarios.</p>
+                
+                <p>A key aspect of my work involves creating <strong>interpretable meta-learners</strong> that not only perform well but also provide insights into their adaptation mechanisms. This research has implications for AI safety, as understanding how models adapt to new tasks is crucial for deploying them in critical applications.</p>
+                
+                <p>Looking forward, I aim to expand this work into <strong>continual learning</strong> scenarios where models must adapt to a stream of new tasks without forgetting previous knowledge, a fundamental challenge in building truly intelligent systems.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="publications">
+        <div class="container">
+            <h2>Selected Publications</h2>
+            <div class="publication-item">
+                <div class="publication-title">Efficient Meta-Learning Through Gradient-Based Neural Architecture Search</div>
+                <div class="publication-authors">Your Name, Co-Author A, Co-Author B</div>
+                <div class="publication-venue">Neural Information Processing Systems (NeurIPS) 2024</div>
+                <div class="publication-links">
+                    <a href="#">Paper</a>
+                    <a href="#">Code</a>
+                    <a href="#">arXiv</a>
+                </div>
+            </div>
+            
+            <div class="publication-item">
+                <div class="publication-title">Interpretable Few-Shot Learning via Attention-Based Meta-Networks</div>
+                <div class="publication-authors">Your Name, Co-Author C, Co-Author D</div>
+                <div class="publication-venue">International Conference on Machine Learning (ICML) 2024</div>
+                <div class="publication-links">
+                    <a href="#">Paper</a>
+                    <a href="#">Code</a>
+                    <a href="#">Slides</a>
+                </div>
+            </div>
+            
+            <div class="publication-item">
+                <div class="publication-title">Transfer Learning in Low-Resource Domains: A Meta-Learning Perspective</div>
+                <div class="publication-authors">Co-Author E, Your Name, Co-Author F</div>
+                <div class="publication-venue">AAAI Conference on Artificial Intelligence 2023</div>
+                <div class="publication-links">
+                    <a href="#">Paper</a>
+                    <a href="#">arXiv</a>
+                </div>
+            </div>
+            
+            <div class="publication-item">
+                <div class="publication-title">Robust Neural Architecture Search Under Distribution Shift</div>
+                <div class="publication-authors">Your Name, Co-Author G</div>
+                <div class="publication-venue">International Conference on Learning Representations (ICLR) 2023</div>
+                <div class="publication-links">
+                    <a href="#">Paper</a>
+                    <a href="#">Code</a>
+                    <a href="#">Poster</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="experience">
+        <div class="container">
+            <h2>Research Experience</h2>
+            <div class="experience-item">
+                <h3>Google DeepMind</h3>
+                <div class="position">Research Intern</div>
+                <div class="duration">Summer 2023</div>
+                <ul>
+                    <li>Developed novel meta-learning algorithms for few-shot learning in computer vision tasks</li>
+                    <li>Collaborated with senior researchers on improving neural architecture search efficiency</li>
+                    <li>Published research that achieved state-of-the-art results on multiple benchmarks</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item">
+                <h3>OpenAI</h3>
+                <div class="position">Research Intern</div>
+                <div class="duration">Summer 2022</div>
+                <ul>
+                    <li>Investigated interpretability methods for large language models</li>
+                    <li>Developed techniques for understanding attention mechanisms in transformer architectures</li>
+                    <li>Contributed to research on AI safety and alignment</li>
+                </ul>
+            </div>
+            
+            <div class="experience-item">
+                <h3>Stanford AI Lab</h3>
+                <div class="position">Graduate Research Assistant</div>
+                <div class="duration">2020 - 2024</div>
+                <ul>
+                    <li>Led research projects on meta-learning and neural architecture search</li>
+                    <li>Mentored 3 undergraduate researchers and 2 master's students</li>
+                    <li>Published 6 papers at top-tier ML conferences</li>
+                    <li>Organized reading groups and presented at lab meetings</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <div class="container">
+            <h2>Contact</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">✉</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>your.name@university.edu</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🏛</div>
+                        <div>
+                            <h4>Office</h4>
+                            <p>Gates Computer Science Building<br>Room 123, Stanford University</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🌐</div>
+                        <div>
+                            <h4>Links</h4>
+                            <p>Google Scholar | ORCID | ResearchGate</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3 style="margin-bottom: 1rem; color: #2c3e50;">Get in Touch</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#" target="_blank" title="Google Scholar">🎓</a>
+                <a href="#" target="_blank" title="LinkedIn">💼</a>
+                <a href="#" target="_blank" title="GitHub">🔗</a>
+                <a href="#" target="_blank" title="Twitter">🐦</a>
+                <a href="#" target="_blank" title="ORCID">📖</a>
+            </div>
+            <p>&copy; 2025 Dr. Your Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! This is a demo form. Please implement actual form handling for your website.');
+        });
+    </script>
+</body>
+</html>
