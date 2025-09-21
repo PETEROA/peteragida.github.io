@@ -134,10 +134,9 @@
 
         /* About Section */
         .about-content {
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 3rem;
-            align-items: start;
+            display: block;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .profile-image {
@@ -455,7 +454,7 @@
                 font-size: 2rem;
             }
 
-            .about-content,
+        
             .contact-content {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -506,6 +505,7 @@
         <div class="container">
             <h2>About</h2>
             <div class="about-content">
+        
                <div class="about-text">
                     <p>I am a machine learning researcher with a deep passion for understanding and advancing artificial intelligence. My work focuses on developing novel algorithms and architectures that can learn more efficiently and generalize better across different domains.</p>
                     <p>Throughout my academic journey, I have been fascinated by the intersection of theoretical computer science and practical applications of AI. My research aims to bridge the gap between cutting-edge theory and real-world impact, with particular emphasis on making AI systems more robust, interpretable, and accessible.</p>
