@@ -631,7 +631,9 @@
                 
                 <div class="contact-form">
                     <h3 style="margin-bottom: 1rem; color: #2c3e50;">Get in Touch</h3>
-                    <form>
+                    <form action="https://formspree.io/f/myzngkkj" method="POST">
+                        <input type="hidden" name="_subject" value="New contact from portfolio website">
+                        <input type="hidden" name="_next" value="https://peteroa.github.io/#contact">
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" id="name" name="name" required>
@@ -700,9 +702,9 @@
         });
 
         // Form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! This is a demo form. Please implement actual form handling for your website.');
+       // document.querySelector('form').addEventListener('submit', function(e) {
+         //   e.preventDefault();
+         //   alert('Thank you for your message! This is a demo form. Please implement actual form handling for your website.');
         });
     </script>
 </body>
